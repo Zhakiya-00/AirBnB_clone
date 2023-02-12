@@ -11,6 +11,9 @@ class HBNBCommand(cmd.Cmd):
     """Define class HBNBCommand"""
 
     prompt = "(hbnb) "
+    class_dict = {
+            "BaseModel": BaseModel,
+            }
 
     def do_create(self, line):
         """Create new instance of BaseModel"""
