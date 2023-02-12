@@ -3,8 +3,14 @@
 
 import cmd
 import json
-from models import storage
+from models.engine import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,6 +19,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     class_dict = {
             "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
             }
 
     def do_create(self, line):
@@ -26,6 +38,14 @@ class HBNBCommand(cmd.Cmd):
                 my_model = HBNBCommand.class_dict[line]()
                 my_model.save()
                 print(my_model.id)
+
+    def do_show(self, line):
+        """prints string repr of an instance
+        """
+        key = my_obj(line)
+        if key:
+            my_dict = storage.all()
+            print(my_dict[key].to_dict())
 
     def do_destroy(self, line):
         """Deletes an instance based on the class name and id"""
@@ -50,10 +70,11 @@ class HBNBCommand(cmd.Cmd):
                 for value in my_dict.values():
                     if value.to_dict()["__class__"] == line:
                         my_list.append(str(value))
-                    print(my_list)
+                print(my_list)
 
     def do_update(self, line):
         """Updates an instance"""
+
         my_list = parse(line)
         key = my_obj(line)
         if key:
@@ -78,12 +99,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(my_in, my_list[2], val)
                 storage.save()
 
-    def do_show(self, line):
-        """Prints string repr of an instance"""
-        key = my_obj(line)
-        if key:
-            my_dict = storage.all()
-            print(my_dict[key].to_dict())
 
     def do_quit(self, line):
         """Quit command to exit the program"""
