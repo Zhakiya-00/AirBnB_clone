@@ -1,18 +1,20 @@
-#!/usr/bin/python3
-"""A base class with common methods/attributes for other classes"""
-
+#!/usr/bin/env python3
+"""A Base class with common methods/attributes
+for other classes
+"""
 import uuid
 from datetime import datetime, time, date
 from models import storage
 
 
 class BaseModel:
-    """Define the class BaseModel that defines attributes id,
+    """a class that defines attributes id,
     created_at, updated_at and methods
     """
+
     def __init__(self, *args, **kwargs):
-        """Initialize the class BaseModel attributes{id, created_at
-        and updated_at}
+        """constructor for class attrs id
+        created_at and updated_at
         """
 
         if not kwargs:
@@ -29,16 +31,22 @@ class BaseModel:
                     setattr(self, key, value)
 
     def __str__(self):
-        """Returns a str representation of the class"""
+        """returns a string repr of the class
+        """
+
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
-        """Update the updated_at attr"""
+        """updates the updated_at attr
+        """
+
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """Returns a dictionary representation of the instance"""
+        """returns a dictionary repr of the instance
+        """
+
         my_dict = self.__dict__.copy()
         my_dict.update({
             "__class__": self.__class__.__name__,
