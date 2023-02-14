@@ -99,7 +99,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(my_in, my_list[2], val)
                 storage.save()
 
-
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
