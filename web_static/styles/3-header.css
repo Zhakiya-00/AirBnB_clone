@@ -1,11 +1,15 @@
 header {
-	color: white;
+	background-color: white;
 	height: 70px;
 	width: 100%;
 	border-bottom: 1px solid #CCCCCC;
 }
 
 .logo {
-	display: flex;
+	background-image: url(../images/logo.png);
+	position:absolute;
+	width: 140px;
+	height: 60px;
+	left: 20px;
 }
 
