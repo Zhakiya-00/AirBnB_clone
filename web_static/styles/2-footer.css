@@ -1,10 +1,9 @@
 footer {
-	color: #00FF00;
+	background-color: #00FF00;
 	height: 60px;
+	position: absolute;
 	width: 100%;
 	bottom: 0;
-	position: fixed;
-	display: flex;
-	justify-content: center;
+	text-align: center;
 	line-height: 60px;
 }
